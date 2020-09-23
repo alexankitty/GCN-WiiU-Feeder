@@ -2,9 +2,9 @@
 - from: A
   to: A
 - from: B
-  to: B
-- from: X
   to: X
+- from: X
+  to: B
 - from: Y
   to: Y
 - from: DpadLeft
@@ -27,18 +27,25 @@
 - from: L
   to: L
   
-- from:
-    type: axis
-    axis: 120
-    offset: RightTrigger
-    comparer: More
-  to: R
-- from:
-    type: axis
-    axis: 120
+# Mapping for Triggers, 1:1 from GC to X360
+- type: linear
+  from:
+    center: 0
+    max: 200
     offset: LeftTrigger
-    comparer: More
-  to: L
+  to:
+    center: 0
+    max: 200
+    offset: LeftTrigger
+- type: linear
+  from:
+    center: 0
+    max: 200
+    offset: RightTrigger
+  to:
+    center: 0
+    max: 200
+    offset: RightTrigger
 
 # Mappings for Stick
 - type: linear
