@@ -171,7 +171,7 @@ int main()
         for (int i = 0; i < 4; i++)
         {
             GCN::Controller& controller = inputs.Controllers[i];
-            if (!controller.On)
+            if (controller.On == ControllerDisconnected)
                 continue;
             X360::Controller emuControllersInputs = {};
             Mapping::Map(mappers, controller, emuControllersInputs);
