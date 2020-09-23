@@ -39,6 +39,12 @@ enum FeederErrors
     FE_ADAPTER,
 };
 
+enum States : unsigned short
+{
+    ControllerConnected = 20,
+    ControllerDisconnected = 4,
+};
+
 static void die(FeederErrors err, const char* why)
 {
     printf("%s\n", why);
@@ -147,7 +153,7 @@ int main()
             if (emuControllersPlugged[i] != controller.On)
             {
                 emuControllersPlugged[i] = controller.On;
-                if (emuControllersPlugged[i] == 20)
+                if (emuControllersPlugged[i] == ControllerConnected)
                 {
                     printf("Controller %d is plugged!\n", i + 1);
                     emuControllers[i].Connect();
