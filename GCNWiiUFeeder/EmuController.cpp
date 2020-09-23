@@ -51,9 +51,10 @@ namespace Emu
     bool Device::Disconnect()
     {
         if (!IsConnected)
-            return true;
+            return false;
 
         vigem_target_remove(*Lib, Target);
+        IsConnected = false;
         return IsConnected;
     }
 

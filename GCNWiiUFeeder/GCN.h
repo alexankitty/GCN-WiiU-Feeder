@@ -18,7 +18,7 @@ namespace GCN
         struct Control
         {
             unsigned char Cmd;
-            unsigned char Active[4];
+            unsigned char Rumble[4];
         };
 #pragma pack(pop)
 

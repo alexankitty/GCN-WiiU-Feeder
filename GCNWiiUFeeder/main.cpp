@@ -147,15 +147,17 @@ int main()
             if (emuControllersPlugged[i] != controller.On)
             {
                 emuControllersPlugged[i] = controller.On;
-                if (controller.On)
+                if (emuControllersPlugged[i] == 20)
                 {
                     printf("Controller %d is plugged!\n", i + 1);
                     emuControllers[i].Connect();
                 }
                 else
                 {
-                    printf("Controller %d is unplugged!\n", i + 1);
-                    emuControllers[i].Disconnect();
+                    if (emuControllers[i].Connected()) {
+                        printf("Controller %d is unplugged!\n", i + 1);
+                        emuControllers[i].Disconnect();
+                    }
                 }
             }
         }
@@ -165,7 +167,6 @@ int main()
             GCN::Controller& controller = inputs.Controllers[i];
             if (!controller.On)
                 continue;
-
             X360::Controller emuControllersInputs = {};
             Mapping::Map(mappers, controller, emuControllersInputs);
             emuControllers[i].Update(emuControllersInputs);
