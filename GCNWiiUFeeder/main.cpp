@@ -141,7 +141,7 @@ int main()
         if (!adapter.Read(inputs))
             continue;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             GCN::Controller& controller = inputs.Controllers[i];
             if (emuControllersPlugged[i] != controller.On)
@@ -160,7 +160,7 @@ int main()
             }
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             GCN::Controller& controller = inputs.Controllers[i];
             if (!controller.On)
