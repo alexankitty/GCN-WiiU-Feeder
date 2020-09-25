@@ -43,11 +43,11 @@ If program failed to load, it will output the line that you may use to troublesh
 * A: WiiU Adapter is malfunctioning, try reinserting USB device. If it does not help, report this as an issue on GitHub.
 
 
-#Current To Do List
+# Current To Do List
 * Finish Rumble Code
 * Set a default controller position when no data has been received from the controller
 * Set a deadzone for rest position to combat joystick and trigger jitter
 
-#Future plans
+# Future plans
 * Push this code to a library
 * Create a C# front end UI
