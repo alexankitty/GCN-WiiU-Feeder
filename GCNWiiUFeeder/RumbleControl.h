@@ -14,7 +14,6 @@ namespace Rumble {
         GCN::Adapter::Control& ctl;
         std::atomic<bool> Rumbling = false;
         std::atomic<bool> ThreadAlive = false;
-        //std::thread rumbleThread;
 
         Control(class GCN::Adapter& adapterInstance, class GCN::Adapter::Control& ctlInstance, unsigned short padId);
 
@@ -22,6 +21,8 @@ namespace Rumble {
         static void ThreadStart(Rumble::Control* RumbleObj);
         void ThreadTerminate(Rumble::Control* RumbleObj);
 
+
+        //To Do: Cleanup old enums
         enum RumbleValues {
             RumbleOff = 0x0,
             RumbleOn = 0x1,

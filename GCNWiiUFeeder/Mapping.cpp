@@ -5,6 +5,8 @@
 #include "ControllerInterfaceImpl.h"
 #include "MappingImpl.h"
 
+//To do: implement this whole section into a GUI of some sort.
+
 namespace Mapping
 {
     namespace Digital

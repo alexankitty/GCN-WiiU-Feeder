@@ -77,7 +77,7 @@ namespace Emu
         UCHAR LedNumber,
         LPVOID UserData
     ){
-        
+        //To Do: Investigate why ViGEm always spits out the same value for both motors
         printf("Small motor %d\n", SmallMotor);
         printf("Large Motor %d\n", LargeMotor);
         Rumble::Control* RumbleObj = static_cast<Rumble::Control*>(UserData);

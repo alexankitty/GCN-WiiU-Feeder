@@ -61,18 +61,6 @@ namespace Rumble{
                 }
             }
             ThreadTerminate(RumbleObj); //Cleaning up and exiting thread.
-            //ctl.Rumble[id] = RumbleOn;
-            //    adapter.Write(ctl);
-            //return;
-            //std::this_thread::sleep_for(std::chrono::milliseconds(pwmTimeOn));
-            //while(pwmTimeOn == OneSecond) {
-            //    std::this_thread::sleep_for(std::chrono::milliseconds(QuarterSecond));
-            //}
-            //if (!Rumbling)
-            //    continue;
-            //ctl.Rumble[id] = RumbleOff;
-            //adapter.Write(ctl);
-            //std::this_thread::sleep_for(std::chrono::milliseconds(pwmTimeOn)); 
     }
 
     void Rumble::Control::ThreadStart(Rumble::Control* RumbleObj) {

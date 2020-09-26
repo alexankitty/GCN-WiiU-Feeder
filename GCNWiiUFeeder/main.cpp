@@ -91,7 +91,7 @@ int main()
     long cfgId = -1;
     do
     {
-        printf("Enter config file NUMBER (from 1 to %ld): \n", cfgPaths.size());
+        printf("Enter config file NUMBER (from 1 to %ld): \n", static_cast<int>(cfgPaths.size()));
         const char cfgIdStr[10] = {};
         scanf_s("%9s", cfgIdStr, (unsigned)_countof(cfgIdStr));
 
@@ -145,6 +145,7 @@ int main()
     ctl.Cmd = 0x11;
     adapter.Write(ctl);
 
+    //To Do: Prettify this monstrosity
     Rumble::Control rumbleControllers[4] = { Rumble::Control(adapter, ctl, pad0), Rumble::Control(adapter, ctl, pad1), Rumble::Control(adapter, ctl, pad2), Rumble::Control(adapter, ctl, pad3) };
     Emu::Device emuControllers[4] = { Emu::Device(libEmu, rumbleControllers[pad0]), Emu::Device(libEmu, rumbleControllers[pad1]), Emu::Device(libEmu, rumbleControllers[pad2]), Emu::Device(libEmu, rumbleControllers[pad3]) };
     char emuControllersPlugged[4] = {};
