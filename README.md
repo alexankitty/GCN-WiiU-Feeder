@@ -1,3 +1,6 @@
+# Warning
+This software is provided without any explicit warranty and is use-at-your-own-risk. While I've done my best to ensure everything works right, I'm not responsible for any damaged peripherals, though the worst I imagine might happen is a gamecube motor burning out.
+
 # GCN-WiiU-Feeder
 Gamecube WiiU Adapter Feeder for ViGEm driver
 
@@ -9,10 +12,11 @@ This Feeder was inspired by the vJoy implementation by m4sv and uses the same ap
 * Axis Centering, arbitrary transformation value
 * Digital button <-> Analog stick/trigger mapping
 * Flexible YAML configuration
+* Rumble/Vibration/Force Feedback Support (Alpha)
 
 # Used Libraries
 * libusb 1.0.23
-* ViGEm 1.16.28.0
+* ViGEmClient v1.16.107.0 (Updated 9/25/2020)
 * yaml-cpp 0.6.3
 
 # How to install and run?
@@ -44,7 +48,6 @@ If program failed to load, it will output the line that you may use to troublesh
 
 
 # Current To Do List
-* Finish Rumble Code
 * Set a default controller position when no data has been received from the controller
 * Set a deadzone for rest position to combat joystick and trigger jitter
 
