@@ -6,7 +6,7 @@ constexpr auto PRODUCT_ID = 0x337;
 namespace GCN
 {
     Adapter::Adapter(Usb::Lib& lib)
-    : Usb::Device(lib, VENDOR_ID, PRODUCT_ID)
+        : Usb::Device(lib, VENDOR_ID, PRODUCT_ID)
     {
         SetEndpoints(1, 2);
     }

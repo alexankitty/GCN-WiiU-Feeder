@@ -45,6 +45,14 @@ enum States : unsigned short
     ControllerDisconnected = 4,
 };
 
+enum PadIDs : unsigned short {
+    pad0 = 0,
+    pad1 = 1,
+    pad2 = 2,
+    pad3 = 3,
+};
+
+
 static void die(FeederErrors err, const char* why)
 {
     printf("%s\n", why);
@@ -132,14 +140,15 @@ int main()
         die(FE_ADAPTER, "Failed to start feeding WiiU inputs");
 
     SetConsoleCtrlHandler(CtrlHandler, TRUE);
-
+    
     GCN::Adapter::Control ctl = {};
     ctl.Cmd = 0x11;
     adapter.Write(ctl);
 
-    Emu::Device emuControllers[4] = { Emu::Device(libEmu), Emu::Device(libEmu), Emu::Device(libEmu), Emu::Device(libEmu) };
+    Rumble::Control rumbleControllers[4] = { Rumble::Control(adapter, ctl, pad0), Rumble::Control(adapter, ctl, pad1), Rumble::Control(adapter, ctl, pad2), Rumble::Control(adapter, ctl, pad3) };
+    Emu::Device emuControllers[4] = { Emu::Device(libEmu, rumbleControllers[pad0]), Emu::Device(libEmu, rumbleControllers[pad1]), Emu::Device(libEmu, rumbleControllers[pad2]), Emu::Device(libEmu, rumbleControllers[pad3]) };
     char emuControllersPlugged[4] = {};
-
+    
     printf("Feeder is running!\n");
     while (Running)
     {

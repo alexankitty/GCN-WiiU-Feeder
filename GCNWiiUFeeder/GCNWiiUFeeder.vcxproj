@@ -180,6 +180,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mapping.cpp" />
     <ClCompile Include="MappingImpl.h" />
+    <ClCompile Include="RumbleControl.cpp" />
     <ClCompile Include="Serialization.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Usb.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="GCN.h" />
     <ClInclude Include="GCNController.h" />
     <ClInclude Include="Mapping.h" />
+    <ClInclude Include="RumbleControl.h" />
     <ClInclude Include="Serialization.h" />
     <ClInclude Include="SerializationImpl.h" />
     <ClInclude Include="debug.h" />
