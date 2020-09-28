@@ -48,13 +48,13 @@ namespace Rumble{
                     }
                     adapter.Write(ctl);
                 }
+                std::this_thread::sleep_for(std::chrono::milliseconds(Frame));
                 while (RumbleObj->Rumbling && RumbleObj->pwmFreqRatio == 60) {
                     std::this_thread::sleep_for(std::chrono::milliseconds(Frame));
                 }
-                std::this_thread::sleep_for(std::chrono::milliseconds(Frame));
                 if (!(i < RumbleObj->pwmFreqRatio)) {
                     i = 0;
-                    RumbleObj->pwmFreqRatio = 1 / RumbleObj->pwmFreqRatio;
+                    RumbleObj->pwmFreqRatio = (1 / RumbleObj->pwmFreqRatio);
                 }
                 if (!RumbleObj->Rumbling) {
                     break;

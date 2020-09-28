@@ -7,6 +7,8 @@
 
 #include "Mapping.h"
 
+#include "Constants.h"
+
 #ifdef _DEBUG
 #include "debug.h"
 static void test()
@@ -28,29 +30,7 @@ BOOL WINAPI CtrlHandler(DWORD event)
 }
 
 
-enum FeederErrors
-{
-    FE_OK = 0,
-    FE_CONFIG_INVALID,
-    FE_CONFIG_READ,
-    FE_CONFIG_PARSE,
-    FE_EMU_LIB,
-    FE_USB_LIB,
-    FE_ADAPTER,
-};
 
-enum States : unsigned short
-{
-    ControllerConnected = 20,
-    ControllerDisconnected = 4,
-};
-
-enum PadIDs : unsigned short {
-    pad0 = 0,
-    pad1 = 1,
-    pad2 = 2,
-    pad3 = 3,
-};
 
 
 static void die(FeederErrors err, const char* why)
@@ -145,9 +125,13 @@ int main()
     ctl.Cmd = 0x11;
     adapter.Write(ctl);
 
-    //To Do: Prettify this monstrosity
-    Rumble::Control rumbleControllers[4] = { Rumble::Control(adapter, ctl, pad0), Rumble::Control(adapter, ctl, pad1), Rumble::Control(adapter, ctl, pad2), Rumble::Control(adapter, ctl, pad3) };
-    Emu::Device emuControllers[4] = { Emu::Device(libEmu, rumbleControllers[pad0]), Emu::Device(libEmu, rumbleControllers[pad1]), Emu::Device(libEmu, rumbleControllers[pad2]), Emu::Device(libEmu, rumbleControllers[pad3]) };
+    Rumble::Control** rumbleControllers = new Rumble::Control*[ControllerQuantity];
+    Emu::Device** emuControllers = new Emu::Device*[ControllerQuantity];
+    for (int i = 0; i < ControllerQuantity; i++) {
+        rumbleControllers[i] = new Rumble::Control(adapter, ctl, i);
+        emuControllers[i] = new Emu::Device(libEmu, *rumbleControllers[i]);
+    }
+
     char emuControllersPlugged[4] = {};
     
     printf("Feeder is running!\n");
@@ -166,13 +150,13 @@ int main()
                 if (emuControllersPlugged[i] == ControllerConnected)
                 {
                     printf("Controller %d is plugged!\n", i + 1);
-                    emuControllers[i].Connect();
+                    emuControllers[i]->Connect();
                 }
                 else
                 {
-                    if (emuControllers[i].Connected()) {
+                    if (emuControllers[i]->Connected()) {
                         printf("Controller %d is unplugged!\n", i + 1);
-                        emuControllers[i].Disconnect();
+                        emuControllers[i]->Disconnect();
                     }
                 }
             }
@@ -185,7 +169,7 @@ int main()
                 continue;
             X360::Controller emuControllersInputs = {};
             Mapping::Map(mappers, controller, emuControllersInputs);
-            emuControllers[i].Update(emuControllersInputs);
+            emuControllers[i]->Update(emuControllersInputs);
         }
     }
 

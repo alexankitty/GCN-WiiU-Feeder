@@ -188,6 +188,7 @@
     <ClCompile Include="X360Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="EmuController.h" />
     <ClInclude Include="ControllerInterface.h" />
     <ClInclude Include="GCN.h" />
